@@ -34,18 +34,18 @@ vector<vector<int>> lcs(string &s, string &t)
     return dp;
 }
 
-string find_lcs(int i, int j, vector<vector<int>> &grid, string &s, string &t)
+string findLCS(int i, int j, vector<vector<int>> &grid, string &s, string &t)
 {
     if (i < 0 || j < 0)
         return "";
 
     if (s[i] == t[j])
-        return find_lcs(i - 1, j - 1, grid, s, t) + s[i];
+        return findLCS(i - 1, j - 1, grid, s, t) + s[i];
 
     if (grid[i - 1][j] > grid[i][j - 1])
-        return find_lcs(i - 1, j, grid, s, t);
+        return findLCS(i - 1, j, grid, s, t);
 
-    return find_lcs(i, j - 1, grid, s, t);
+    return findLCS(i, j - 1, grid, s, t);
 }
 
 int main(void)
@@ -55,7 +55,7 @@ int main(void)
 
     vector<vector<int>> grid = lcs(s, t);
 
-    string res = find_lcs(s.length() - 1, t.length() - 1, grid, s, t);
+    string res = findLCS(s.length() - 1, t.length() - 1, grid, s, t);
 
     cout << res << newl;
     return 0;
